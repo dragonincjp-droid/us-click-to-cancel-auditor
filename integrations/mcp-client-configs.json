@@ -1,0 +1,22 @@
+{
+  "apifyHostedMcpGateway": {
+    "mcpServers": {
+      "us-click-to-cancel-auditor": {
+        "url": "https://mcp.apify.com/?tools=healthy_addax/us-click-to-cancel-auditor",
+        "headers": {
+          "Authorization": "Bearer <YOUR_APIFY_TOKEN>"
+        }
+      }
+    }
+  },
+  "globalComplianceSuiteMcp": {
+    "mcpServers": {
+      "us-eu-wcag-compliance-suite": {
+        "url": "https://mcp.apify.com/?tools=healthy_addax/us-click-to-cancel-auditor,healthy_addax/eu-withdrawal-omnibus-auditor,healthy_addax/wcag-eaa-ada-auditor",
+        "headers": {
+          "Authorization": "Bearer <YOUR_APIFY_TOKEN>"
+        }
+      }
+    }
+  }
+}

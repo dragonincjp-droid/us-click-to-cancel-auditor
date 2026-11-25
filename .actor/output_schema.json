@@ -1,0 +1,13 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "US Click-to-Cancel, Subscription & ARL Compliance Audit Output",
+  "description": "Structured per-site US Click-to-Cancel, Auto-Renewal Law (CA AB 2863, NY/NYC ARL, CO SB 25-145, ROSCA), subscription tech stack, CA SB 478 drip-fee signals, B2B cold outreach hooks, and HTML/JS remediation snippets stored in the default Dataset.",
+  "properties": {
+    "auditResults": {
+      "type": "string",
+      "title": "US Subscription & ARL Compliance Dataset",
+      "description": "Per-site complianceScore, riskTier, subscriptionStack, cancellationStatus, pre-checked consent & trial checks, CA SB 478 drip fees, coldOutreachHook, and remediationPack.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    }
+  }
+}

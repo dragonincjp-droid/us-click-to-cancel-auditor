@@ -1,0 +1,17 @@
+{
+  "actor-start": {
+    "eventTitle": "Actor start",
+    "eventDescription": "One-time initialization charge when the US Click-to-Cancel & ARL Compliance Auditor run starts.",
+    "eventPriceUsd": 0.005
+  },
+  "url-audited": {
+    "eventTitle": "Subscription & ARL compliance audit",
+    "eventDescription": "Per-site HTTP audit for CA AB 2863, NY/NYC ARL, CO SB 25-145 Click-to-Cancel, ROSCA consent, CA SB 478 drip fees & outreach hook.",
+    "eventPriceUsd": 0.015
+  },
+  "remediation-pack-generated": {
+    "eventTitle": "US ARL consent & 1-click cancel HTML/JS pack",
+    "eventDescription": "Optional per-site charge when findings exist and CA AB 2863 / CO SB 25-145 auto-renewal consent + 1-click cancel HTML/JS is generated.",
+    "eventPriceUsd": 0.01
+  }
+}

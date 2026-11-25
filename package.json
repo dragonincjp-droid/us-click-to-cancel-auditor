@@ -1,0 +1,47 @@
+{
+  "name": "us-click-to-cancel-auditor",
+  "version": "1.0.0",
+  "description": "Zero-Playwright HTTP compliance auditor for US Click-to-Cancel & Auto-Renewal laws (CA AB 2863, NY ARL & NYC Oct 2026 Rule, CO SB 25-145 B2B SaaS, Federal ROSCA & CA SB 478 drip fees) with HTML/JS remediation & Standby MCP Server.",
+  "type": "module",
+  "main": "dist/main.js",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dragonincjp-droid/us-click-to-cancel-auditor.git"
+  },
+  "scripts": {
+    "build": "node src/build.mjs",
+    "start": "node dist/main.js",
+    "start:prod": "node dist/main.js",
+    "start:standby": "node dist/main.js --standby",
+    "test": "ALLOW_LOCALHOST_FOR_TESTS=1 node --test --test-force-exit tests/auditor.e2e.test.mjs",
+    "typecheck": "node src/build.mjs --check",
+    "lint": "node src/build.mjs --check"
+  },
+  "keywords": [
+    "apify",
+    "actor",
+    "mcp",
+    "click-to-cancel",
+    "automatic-renewal-law",
+    "ab-2863",
+    "rosca",
+    "drip-pricing",
+    "sb-478",
+    "shopify",
+    "recharge",
+    "saas-compliance",
+    "lead-generation"
+  ],
+  "author": "Autonomous Venture Studio",
+  "license": "MIT",
+  "dependencies": {
+    "apify": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.3"
+  }
+}

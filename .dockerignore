@@ -1,0 +1,14 @@
+.git
+.github
+node_modules
+dist
+storage
+apify_storage
+coverage
+tests
+integrations
+*.md
+!README.md
+.env
+.env.*
+*.log

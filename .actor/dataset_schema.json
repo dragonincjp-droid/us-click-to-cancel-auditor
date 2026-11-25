@@ -1,0 +1,279 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "type": "object",
+    "required": [
+      "url",
+      "domain",
+      "auditedAt",
+      "status",
+      "complianceScore",
+      "riskTier",
+      "disclaimer"
+    ],
+    "properties": {
+      "url": {
+        "type": "string",
+        "description": "Original input URL or bare domain requested for auditing."
+      },
+      "normalizedInputUrl": {
+        "type": "string",
+        "description": "Normalized HTTP/HTTPS URL derived from input."
+      },
+      "finalUrl": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Resolved homepage URL after validated HTTP redirects."
+      },
+      "domain": {
+        "type": "string",
+        "description": "Target site hostname."
+      },
+      "auditedAt": {
+        "type": "string",
+        "description": "ISO 8601 UTC audit timestamp."
+      },
+      "status": {
+        "type": "string",
+        "description": "Audit execution status (audited, blocked_ssrf, blocked_robots, error)."
+      },
+      "httpStatus": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "description": "Homepage HTTP response status code."
+      },
+      "pageTitle": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "HTML document <title> of the homepage."
+      },
+      "detectedLanguage": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Detected HTML language code (e.g. en)."
+      },
+      "sitePlatform": {
+        "type": "string",
+        "description": "Detected storefront or web platform (shopify, woocommerce, bigcommerce, magento, wix, squarespace, saas-web, custom)."
+      },
+      "businessModel": {
+        "type": "string",
+        "description": "Classified subscription model (dtc_ecommerce_subscription, b2b_or_b2c_saas, membership_or_media, non_subscription)."
+      },
+      "subscriptionStack": {
+        "type": "array",
+        "description": "Detected DTC subscription apps and SaaS billing engines (recharge, skio, loop-subscriptions, bold-subscriptions, ordergroove, stay-ai, seal-subscriptions, appstle, stripe-billing, chargebee, recurly, paddle, zuora, lemon-squeezy)."
+      },
+      "hasSubscriptionSignals": {
+        "type": "boolean",
+        "description": "Whether recurring subscription, membership, auto-delivery, or free-trial offers were detected."
+      },
+      "loadTimeMs": {
+        "type": "number",
+        "description": "Total site audit duration in milliseconds."
+      },
+      "pagesFetchedCount": {
+        "type": "integer",
+        "description": "Total HTTP pages fetched for this site (homepage + discovered internal pricing/terms/cancel subpages)."
+      },
+      "pagesFetched": {
+        "type": "array",
+        "description": "URLs of all pages inspected on this site."
+      },
+      "errorMessage": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Diagnostic error or security block reason when status is not audited."
+      },
+      "complianceScore": {
+        "type": "number",
+        "description": "Deterministic 0-100 US subscription & ARL technical compliance score (100 = no heuristic issues detected)."
+      },
+      "riskTier": {
+        "type": "string",
+        "description": "Heuristic compliance risk tier: CRITICAL, HIGH, MODERATE, or LOW."
+      },
+      "cancellationStatus": {
+        "type": "string",
+        "description": "Click-to-Cancel classification (online_self_serve_found, call_or_email_obstruction, survey_gated, no_cancel_mechanism_disclosed, no_subscription_detected, not_checked)."
+      },
+      "onlineClickToCancelFound": {
+        "type": "boolean",
+        "description": "Whether an unobstructed online self-serve Click-to-Cancel mechanism or portal was detected."
+      },
+      "callOrEmailObstructionFound": {
+        "type": "boolean",
+        "description": "Whether phone-only, email-only, or live-chat-agent cancellation obstructions were detected."
+      },
+      "mandatoryExitSurveyFound": {
+        "type": "boolean",
+        "description": "Whether mandatory exit-survey fields or questionnaire gates were detected on cancellation flows (NYC Oct 2026 Rule / CA AB 2863)."
+      },
+      "clickToCancelCheck": {
+        "type": "object",
+        "description": "Detailed Click-to-Cancel, obstruction, and exit-survey analysis."
+      },
+      "preCheckedConsentBoxFound": {
+        "type": "boolean",
+        "description": "Whether a pre-checked recurring/auto-renewal consent checkbox (<input type=checkbox checked>) was detected."
+      },
+      "missingAutoRenewalDisclosure": {
+        "type": "boolean",
+        "description": "Whether subscription offers lacked explicit continuous auto-renewal disclosure text."
+      },
+      "missingTrialConversionDisclosure": {
+        "type": "boolean",
+        "description": "Whether a free-trial offer lacked clear post-trial recurring price and cancellation deadline wording."
+      },
+      "affirmativeConsentCheck": {
+        "type": "object",
+        "description": "Detailed CA AB 2863 / ROSCA affirmative consent & free-trial conversion analysis."
+      },
+      "dripFeeViolationFound": {
+        "type": "boolean",
+        "description": "Whether mandatory service, processing, or convenience drip fees disclosed outside upfront prices were detected (CA SB 478)."
+      },
+      "dripFeeCheck": {
+        "type": "object",
+        "description": "Detailed California SB 478 Honest Pricing / drip-fee analysis."
+      },
+      "pricingUrl": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Discovered Pricing / Plans / Subscribe subpage URL."
+      },
+      "cancelPageUrl": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Discovered Cancellation / Manage Subscription portal URL."
+      },
+      "termsUrl": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Discovered Terms of Service / Terms & Conditions URL."
+      },
+      "billingOrFaqUrl": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "description": "Discovered Billing / FAQ / Refund Policy URL."
+      },
+      "discoveredLinks": {
+        "type": "object",
+        "description": "Structured subscription, pricing, cancellation, and legal URLs discovered on the site."
+      },
+      "findingsCount": {
+        "type": "integer",
+        "description": "Total number of compliance findings flagged."
+      },
+      "findings": {
+        "type": "array",
+        "description": "Prioritized technical compliance findings with ruleId, regulation, severity, evidence, and recommendation."
+      },
+      "coldOutreachHook": {
+        "type": "string",
+        "description": "Neutral, factual 1-2 sentence B2B outreach observation ready for Clay, n8n, Smartlead, or Instantly."
+      },
+      "remediationPackGenerated": {
+        "type": "boolean",
+        "description": "Whether a CA AB 2863 / CO SB 25-145 HTML/JS consent + 1-click cancel remediation pack was generated."
+      },
+      "remediationPack": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "description": "Copy-pasteable Unchecked Express Auto-Renewal Consent Box + 1-Click Online Cancellation Modal HTML/JS snippets."
+      },
+      "recommendedNextActors": {
+        "type": "array",
+        "description": "Recommended follow-up Apify Actors (WCAG/ADA Visual Auditor & EU Withdrawal/Omnibus Auditor)."
+      },
+      "disclaimer": {
+        "type": "string",
+        "description": "Mandatory technical heuristic & non-legal-advice disclaimer."
+      }
+    }
+  },
+  "views": {
+    "overview": {
+      "title": "US Subscription, Click-to-Cancel & Lead Enrichment Overview",
+      "transformation": {
+        "fields": [
+          "url",
+          "sitePlatform",
+          "subscriptionStack",
+          "complianceScore",
+          "riskTier",
+          "cancellationStatus",
+          "preCheckedConsentBoxFound",
+          "dripFeeViolationFound",
+          "coldOutreachHook",
+          "status"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "url": {
+            "label": "Site URL",
+            "format": "link"
+          },
+          "sitePlatform": {
+            "label": "Platform",
+            "format": "text"
+          },
+          "subscriptionStack": {
+            "label": "Billing Stack",
+            "format": "array"
+          },
+          "complianceScore": {
+            "label": "Compliance Score (0-100)",
+            "format": "number"
+          },
+          "riskTier": {
+            "label": "Risk Tier",
+            "format": "text"
+          },
+          "cancellationStatus": {
+            "label": "Click-to-Cancel Status",
+            "format": "text"
+          },
+          "preCheckedConsentBoxFound": {
+            "label": "Pre-Checked Box",
+            "format": "boolean"
+          },
+          "dripFeeViolationFound": {
+            "label": "SB 478 Drip Fee",
+            "format": "boolean"
+          },
+          "coldOutreachHook": {
+            "label": "Cold Outreach Hook",
+            "format": "text"
+          },
+          "status": {
+            "label": "Status",
+            "format": "text"
+          }
+        }
+      }
+    }
+  }
+}

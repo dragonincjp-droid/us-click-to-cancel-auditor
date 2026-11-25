@@ -1,0 +1,19 @@
+{
+  "actorSpecification": 1,
+  "name": "us-click-to-cancel-auditor",
+  "title": "US Click-to-Cancel, Subscription & ARL Compliance Auditor",
+  "description": "Bulk-audit DTC & SaaS sites via fast HTTP for US Click-to-Cancel & Auto-Renewal laws (CA AB 2863, NY/NYC ARL, CO SB 25-145 B2B SaaS, ROSCA & CA SB 478 drip fees) with HTML/JS fix snippets & B2B outreach hooks.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "minMemoryMbytes": 256,
+  "maxMemoryMbytes": 1024,
+  "usesStandbyMode": true,
+  "webServerMcpPath": "/mcp",
+  "dockerfile": "../Dockerfile",
+  "readme": "../README.md",
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  }
+}

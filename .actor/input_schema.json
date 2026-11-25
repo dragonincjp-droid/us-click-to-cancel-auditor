@@ -1,0 +1,115 @@
+{
+  "title": "US Click-to-Cancel, Subscription & ARL Compliance Auditor Input",
+  "description": "Audit DTC e-commerce stores and B2B/B2C SaaS apps via fast zero-browser HTTP for US Click-to-Cancel & Auto-Renewal laws (California AB 2863, New York GBL § 527-a & NYC Oct 2026 Rule, Colorado SB 25-145 B2B SaaS, Federal ROSCA, and California SB 478 drip fees).",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "urls": {
+      "title": "Target Store or SaaS URLs / Bare Domains",
+      "type": "array",
+      "description": "List of DTC store or SaaS URLs or bare domains to audit (supports full URLs like \"https://shop.example.com\", bare domains like \"app.example.com\", or RequestList objects like [{\"url\": \"https://shop.example.com\"}]).",
+      "editor": "stringList",
+      "prefill": [
+        "https://example.com"
+      ]
+    },
+    "url": {
+      "title": "Single URL or Domain (Optional Shorthand)",
+      "type": "string",
+      "description": "Optional single store or SaaS URL/domain convenience field for REST webhooks, Clay HTTP columns, or MCP calls.",
+      "editor": "textfield"
+    },
+    "datasetId": {
+      "title": "Upstream Apify Dataset ID (Optional Chaining)",
+      "type": "string",
+      "description": "Optional Apify Dataset ID (e.g. from Shopify Store Scraper, Google Maps Scraper, or SaaS Directory Scraper) to auto-import URLs and deduplicate with urls.",
+      "editor": "textfield"
+    },
+    "datasetUrlField": {
+      "title": "Dataset URL Field Override (Optional)",
+      "type": "string",
+      "description": "Optional column name to extract URLs from datasetId items. When omitted, auto-detects website, url, domain, shopUrl, storeUrl, appUrl, or pricingUrl.",
+      "editor": "textfield"
+    },
+    "maxLegalPagesPerDomain": {
+      "title": "Max Internal Pricing/Terms/Cancel Subpages per Site",
+      "type": "integer",
+      "description": "Maximum number of discovered same-origin internal pages (/cancel, /pricing, /plans, /subscribe, /membership, /terms, /billing, /faq) fetched per site in addition to the homepage (0-5).",
+      "default": 3,
+      "minimum": 0,
+      "maximum": 5,
+      "editor": "number"
+    },
+    "includeRemediationPack": {
+      "title": "Generate US ARL Consent + 1-Click Cancel HTML/JS Pack",
+      "type": "boolean",
+      "description": "Generates ready-to-paste CA AB 2863 / CO SB 25-145 Unchecked Express Auto-Renewal Consent Box + 1-Click Online Cancellation Modal HTML/JS snippets when compliance findings exist (+$0.01/site).",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "checkClickToCancel": {
+      "title": "Check Online Click-to-Cancel & Survey/Support Obstructions",
+      "type": "boolean",
+      "description": "Checks for online same-medium Click-to-Cancel links/portals vs. call-only/email-only/chat-only cancellation traps and NYC Oct 2026 mandatory exit-survey gates (CA AB 2863, NY GBL § 527-a, CO SB 25-145, ROSCA).",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "checkAffirmativeConsent": {
+      "title": "Check Affirmative Auto-Renewal Consent & Trial Disclosures",
+      "type": "boolean",
+      "description": "Inspects subscription and trial flows for pre-checked recurring checkboxes (<input type=checkbox checked>), continuous auto-renewal disclosures, and post-trial conversion price/deadline terms.",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "checkDripFees": {
+      "title": "Check Drip Pricing / Mandatory Junk Fees (CA SB 478)",
+      "type": "boolean",
+      "description": "Scans pricing, checkout, and terms text for mandatory service, processing, convenience, or platform fees disclosed outside upfront prices (Cal. Civ. Code § 1770(a)(29)).",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "respectRobotsTxt": {
+      "title": "Respect robots.txt",
+      "type": "boolean",
+      "description": "Checks domain /robots.txt rules before scanning and skips disallowed paths.",
+      "default": true,
+      "editor": "checkbox"
+    },
+    "maxUrls": {
+      "title": "Max Sites Safety Cap",
+      "type": "integer",
+      "description": "Hard ceiling on the total number of sites audited in a single run to prevent accidental budget overruns.",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 5000,
+      "editor": "number"
+    },
+    "maxConcurrency": {
+      "title": "Max Concurrent HTTP Workers",
+      "type": "integer",
+      "description": "Maximum parallel HTTP site workers (1-20).",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 20,
+      "editor": "number"
+    },
+    "domainDelayMs": {
+      "title": "Per-Domain Polite Delay (ms)",
+      "type": "integer",
+      "description": "Minimum polite delay in milliseconds between consecutive HTTP requests to the same hostname.",
+      "default": 300,
+      "minimum": 0,
+      "maximum": 30000,
+      "editor": "number"
+    },
+    "requestTimeoutMs": {
+      "title": "HTTP Request Timeout (ms)",
+      "type": "integer",
+      "description": "Strict timeout per HTTP request in milliseconds (default 12000ms).",
+      "default": 12000,
+      "minimum": 2000,
+      "maximum": 60000,
+      "editor": "number"
+    }
+  }
+}
